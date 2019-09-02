@@ -154,7 +154,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 
            if(CTRL_BASE_L < dif_l){
             dl_tmp += CTRL_CONT_LOW * dif_l * 0.1;
-            dr_tmp += -1 * CTRL_CONT_LOW *dif_l * 0.1;
+            dr_tmp += -1 * CTRL_CONT_LOW *dif_l * 0.1;   //計算に0.1をかけた
            }
            if(CTRL_BASE_R < dif_r){
             dl_tmp += -1 * CTRL_CONT_LOW * dif_r * 0.1;
