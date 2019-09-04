@@ -305,7 +305,7 @@ int main(void)
             printf("Right : [ ]\n");
           }
           printf("Control Check.\n");
-          if(ad_l > 1000 && ad_r  > 1000){
+          if(ad_l > 800 && ad_r  > 800){
             printf("Control [HIGH]\n");
           }else{
             printf("Contorl [LOW]\n");

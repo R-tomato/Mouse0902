@@ -73,17 +73,18 @@ void searchA(){
       //----180回転----
       case 0x22:                    //0010 0010
         rotate_180();               //180度回転
-        turn_dir(DIR_TURN_180);     //マイクロマウス内部位置情報でも180度回転処理 　そして尻当て
+        turn_dir(DIR_TURN_180);     //マイクロマウス内部位置情報でも180度回転処理
 
-        rotate_R90();
-        drive_wait();
-        set_position(0);
-        drive_wait();
-        rotate_L90();
-        drive_wait();
-        set_position(0);
-        drive_wait();
+        if(ad_l > 600 && ad_r > 600){ //両壁がある場合に尻当てを行う
+          drive_wait();
+          reset_position();
+          break;
+        }else{
+
         break;
+
+        }
+
       //----左折----
       case 0x11:                    //0001 0001
         rotate_L90();               //左回転
@@ -163,17 +164,17 @@ void searchB(void){
         rotate_180();               //180度回転
         turn_dir(DIR_TURN_180);     //マイクロマウス内部位置情報でも180度回転処理 からの尻当て
 
-        rotate_R90();
-        drive_wait();
-        set_position(0);
-        drive_wait();
-        rotate_L90();
-        drive_wait();
-        set_position(0);
-        drive_wait();
 
-        half_sectionA();            //半区画分加速しながら走行する
+        if(ad_l > 600 && ad_r > 600){     //もし両壁が存在するときだけ尻当てを行う（バグ対策
+        drive_wait();
+        reset_position();
+        half_sectionA();
         break;
+        }else{
+          half_sectionA();            //半区画分加速しながら走行する
+          break;
+        }
+
       //----左折----
       case 0x11:
         half_sectionD();            //編集　半区画分減速しながら走行し停止
