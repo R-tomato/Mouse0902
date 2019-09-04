@@ -42,8 +42,8 @@
     センサ系
 ------------------------------------------------------------*/
 //---Wall Sensor(value)----
-#define WALL_BASE_FR  350    //Front Right Sensor
-#define WALL_BASE_FL  350    //Front Left Sensor
+#define WALL_BASE_FR  200    //Front Right Sensor
+#define WALL_BASE_FL  200    //Front Left Sensor
 #define WALL_BASE_R   600   //Right Sensor
 #define WALL_BASE_L   400   //Left Sensor
 
@@ -51,8 +51,8 @@
 #define CTRL_BASE_L     200   //Left
 #define CTRL_BASE_R     300  //Right
 #define CTRL_MAX        4000  //Max
-#define CTRL_CONT_HIGH  0.035F  //　両壁がある場合の制御
-#define CTRL_CONT_LOW   0.001F  //　片方壁がある時の制御
+#define CTRL_CONT_HIGH  0.045F  //　両壁がある場合の制御
+#define CTRL_CONT_LOW   0.002F  //　片方壁がある時の制御
 
 //----赤外線（赤色）LED発光待機時間（単位はマイクロ秒）
 #define IR_WAIT_US  15
@@ -63,8 +63,8 @@
     探索系
 ------------------------------------------------------------*/
 //----Goal ccordinate----
-#define GOAL_X 4  //7
-#define GOAL_Y 0  //7
+#define GOAL_X 9  //7
+#define GOAL_Y 6  //7
 
 
 #endif /* INC_PARAMS_H_ */

@@ -167,14 +167,16 @@ int main(void)
         goal_x = GOAL_X;
         goal_y = GOAL_Y;          //ゴール座標を設定，GOAL_X・GOAL_Y は global.h に定義あり
 
-        rotate_R90();             //右に90度回転する，drive.c で定義されている
-        drive_wait();             //機体が安定するまで待機，drive.h に定義あり
-        set_position(0);          //尻当てをして機体の位置を中央へ，drive.c で定義されている
-        drive_wait();             //機体が安定するまで待機
-        rotate_L90();             //左に90度回転する，drive.c で定義されている
-        drive_wait();             //機体が安定するまで待機
-        set_position(0);          //尻当てをして機体の位置を中央へ
-        drive_wait();             //機体が安定するまで待機
+//        rotate_R90();             //右に90度回転する，drive.c で定義されている
+//        drive_wait();             //機体が安定するまで待機，drive.h に定義あり
+//        set_position(0);          //尻当てをして機体の位置を中央へ，drive.c で定義されている
+//        drive_wait();             //機体が安定するまで待機
+//        rotate_L90();             //左に90度回転する，drive.c で定義されている
+//        drive_wait();             //機体が安定するまで待機
+//        set_position(0);          //尻当てをして機体の位置を中央へ
+//        drive_wait();             //機体が安定するまで待機
+
+        reset_position();           //　上の置き換え
 
         get_base();               //get base
 
@@ -199,14 +201,7 @@ int main(void)
         goal_x = GOAL_X;
         goal_y = GOAL_Y;
 
-        rotate_R90();
-        drive_wait();
-        set_position(0);
-        drive_wait();
-        rotate_L90();
-        drive_wait();
-        set_position(0);
-        drive_wait();
+        reset_position();
 
         get_base();             //get_base
 
@@ -236,14 +231,7 @@ int main(void)
         goal_x = GOAL_X;
         goal_y = GOAL_Y;
 
-        rotate_R90();
-        drive_wait();
-        set_position(0);
-        drive_wait();
-        rotate_L90();
-        drive_wait();
-        set_position(0);
-        drive_wait();
+        reset_position();
 
         get_base();
 
@@ -268,14 +256,7 @@ int main(void)
         goal_x = GOAL_X;
          goal_y = GOAL_Y;
 
-         rotate_R90();
-         drive_wait();
-         set_position(0);
-         drive_wait();
-         rotate_L90();
-         drive_wait();
-         set_position(0);
-         drive_wait();
+         reset_position();
 
          get_base();
 

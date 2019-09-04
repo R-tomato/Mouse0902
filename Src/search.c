@@ -73,7 +73,16 @@ void searchA(){
       //----180回転----
       case 0x22:                    //0010 0010
         rotate_180();               //180度回転
-        turn_dir(DIR_TURN_180);     //マイクロマウス内部位置情報でも180度回転処理
+        turn_dir(DIR_TURN_180);     //マイクロマウス内部位置情報でも180度回転処理 　そして尻当て
+
+        rotate_R90();
+        drive_wait();
+        set_position(0);
+        drive_wait();
+        rotate_L90();
+        drive_wait();
+        set_position(0);
+        drive_wait();
         break;
       //----左折----
       case 0x11:                    //0001 0001
@@ -152,7 +161,17 @@ void searchB(void){
       case 0x22:
         half_sectionD();            //編集
         rotate_180();               //180度回転
-        turn_dir(DIR_TURN_180);     //マイクロマウス内部位置情報でも180度回転処理
+        turn_dir(DIR_TURN_180);     //マイクロマウス内部位置情報でも180度回転処理 からの尻当て
+
+        rotate_R90();
+        drive_wait();
+        set_position(0);
+        drive_wait();
+        rotate_L90();
+        drive_wait();
+        set_position(0);
+        drive_wait();
+
         half_sectionA();            //半区画分加速しながら走行する
         break;
       //----左折----

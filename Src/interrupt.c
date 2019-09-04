@@ -136,7 +136,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
           int16_t dl_tmp = 0, dr_tmp = 0;
           //a基準値からの差を見る(左右のセンサーで得たセンサー値から基準値を引いている
 
-          if(ad_l > 1000 && ad_r  > 1000){      // 両壁がある場合の制御
+          if(ad_l > 600 && ad_r  > 600){      // 両壁がある場合の制御
           dif_l = (int32_t) ad_l - base_l;
           dif_r = (int32_t) ad_r - base_r;
 

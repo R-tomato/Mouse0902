@@ -78,8 +78,8 @@ void one_sectionU(void){
 //+++++++++++++++++++++++++++++++++++++++++++++++
 //rotate_R90
 // turn reft 90
-// 引数：なし
-// 戻り値：なし
+// a引数：なし
+// a戻り値：なし
 //+++++++++++++++++++++++++++++++++++++++++++++++
 void rotate_R90(void){
 
@@ -124,6 +124,47 @@ void rotate_180(void){
   drive_set_dir(FORWARD);             // 前進するようにモータの回転方向を設定
 }
 
+//+++++++++++++++++++++++++++++++++++++++++++++++
+//re_set_position(追加
+//a尻当て
+//a引数:なし
+//a返り値:なし
+//+++++++++++++++++++++++++++++++++++++++++++++++
+void reset_position(void){
+
+  MF.FLAG.CTRL = 0;
+
+  drive_set_dir(ROTATE_R);    //turn Right
+  drive_wait();
+  driveC(PULSE_ROT_R90);
+  drive_wait();
+
+  drive_set_dir(BACK);        //back
+  drive_wait();
+  driveC(PULSE_SETPOS_BACK);
+  drive_wait();
+
+  drive_set_dir(FORWARD);     //forward
+  drive_wait();
+  driveC(PULSE_SETPOS_SET);
+  drive_wait();
+
+  drive_set_dir(ROTATE_L);    //Left
+  drive_wait();
+  driveC(PULSE_ROT_L90);
+  drive_wait();
+
+  drive_set_dir(BACK);        //back
+  drive_wait();
+  driveC(PULSE_SETPOS_BACK);
+  drive_wait();
+
+  drive_set_dir(FORWARD);     //forward
+  drive_wait();
+  driveC(PULSE_SETPOS_SET);
+  drive_wait();
+
+}
 
 //+++++++++++++++++++++++++++++++++++++++++++++++
 //set_position
@@ -248,6 +289,7 @@ void driveC(uint16_t dist){
 
   drive_stop();
 }
+
 
 
 
