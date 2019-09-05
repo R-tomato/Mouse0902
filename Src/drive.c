@@ -501,14 +501,8 @@ void test_run(void){
         //----尻当て----
 
         MF.FLAG.SCND = 0;
-        rotate_R90();
-        drive_wait();
-        set_position(0);
-        drive_wait();
-        rotate_L90();
-        drive_wait();
-        set_position(0);
-        drive_wait();
+
+        reset_position();
 
         break;
       case 6:
