@@ -8,6 +8,9 @@
 
 #include "global.h"
 
+int count_L;
+int count_R;
+
 
 //+++++++++++++++++++++++++++++++++++++++++++++++
 //search_init
@@ -154,10 +157,26 @@ void searchB(void){
       //----右折----
       case 0x44:
         half_sectionD();            //半区画分減速しながら走行し停止
+        count_R ++;
+        if(ad_l > 400 && count_R == 3){
+        count_R = 0;
         rotate_R90();               //右回転
         turn_dir(DIR_TURN_R90);     //マイクロマウス内部位置情報でも右回転処理
-        half_sectionA();            //編集 半区画分加速しながら走行する
+        only_set_position();
+
+        }else if(count_R == 3){
+          count_R = 0;
+          rotate_R90();
+          turn_dir(DIR_TURN_R90);
+        }else{
+          rotate_R90();
+          turn_dir(DIR_TURN_R90);
+        }
+
+        half_sectionA();
         break;
+
+
       //----180回転----
       case 0x22:
         half_sectionD();            //編集
@@ -178,10 +197,25 @@ void searchB(void){
       //----左折----
       case 0x11:
         half_sectionD();            //編集　半区画分減速しながら走行し停止
-        rotate_L90();               //編集　左回転
-        turn_dir(DIR_TURN_L90);     //編集　マイクロマウス内部位置情報でも左回転処理
-        half_sectionA();            //編集　半区画分加速しながら走行
-        break;
+        count_L ++;
+      //スリップ対策のために条件分岐
+        if(ad_r > 400 && count_L == 3){   //左回転する前に右壁を検知し，かつ左折カウントが3の時
+        count_L = 0;                //左折カウントをリセット
+        rotate_L90();               //左回転
+        turn_dir(DIR_TURN_L90);     //マイクロマウス内部位置情報でも左回転処理
+        only_set_position();        //尻当て
+
+        }else if(count_L == 3){     //左折前に右壁がない場合，尻当てを行わない
+          count_L = 0;              //左折カウントをリセット
+          rotate_L90();
+          turn_dir(DIR_TURN_L90);
+        }else{
+          rotate_L90();
+          turn_dir(DIR_TURN_L90);
+        }
+          half_sectionA();
+          break;
+
     }
     adv_pos();
     conf_route();

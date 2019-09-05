@@ -156,9 +156,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
             dl_tmp += CTRL_CONT_LOW * dif_l * 0.1;
             dr_tmp += -1 * CTRL_CONT_LOW *dif_l * 0.1;   //計算に0.1をかけた
            }
+
            if(CTRL_BASE_R < dif_r){
             dl_tmp += -1 * CTRL_CONT_LOW * dif_r * 0.1;
-            dr_tmp += CTRL_CONT_LOW * dif_r * 0.1;     //計算に0.1をかけた
+            dr_tmp += CTRL_CONT_LOW * dif_r * 0.1;      //計算に0.1をかけた
           }
           }
 
@@ -167,7 +168,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
           dl = max(min(CTRL_MAX, dl_tmp), -1 * CTRL_MAX);
           dr = max(min(CTRL_MAX, dr_tmp), -1 * CTRL_MAX);
         }else{
-          //a制御フラグがなければ制御値0
+                                                        //a制御フラグがなければ制御値0
           dl = dr = 0;
         }
         break;
