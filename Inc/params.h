@@ -51,7 +51,7 @@
 #define CTRL_BASE_L     200   //Left
 #define CTRL_BASE_R     300  //Right
 #define CTRL_MAX        4000  //Max
-#define CTRL_CONT_HIGH  0.1F  //　両壁がある場合の制御
+#define CTRL_CONT_HIGH  0.08F  //　両壁がある場合の制御
 #define CTRL_CONT_LOW   0.0001F  //　片方壁がある時の制御
 #define CHANGE_CONT_R   300
 #define CHANGE_CONT_L   400

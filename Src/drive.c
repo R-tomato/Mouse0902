@@ -179,6 +179,11 @@ void only_set_position(void){
   drive_wait();                       //機体が安定するまで待機
   driveC(PULSE_SETPOS_BACK);          //尻を当てる程度に後退。回転後に停止する
   drive_wait();                       //機体が安定するまで待機
+  drive_set_dir(FORWARD);
+  drive_wait();
+  driveC(PULSE_SETPOS_SET);
+  drive_wait();
+
 }
 
 //+++++++++++++++++++++++++++++++++++++++++++++++
