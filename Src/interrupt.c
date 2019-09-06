@@ -148,19 +148,29 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
             dl_tmp += -1 * CTRL_CONT_HIGH * dif_r;   // 比例制御値を決定
             dr_tmp += CTRL_CONT_HIGH * dif_r;        // 比例制御値を決定
           }
-          }else{                                //両壁でない場合の制御
+          }else{                                // 両壁でない場合の制御
             dif_l = (int32_t) ad_l - base_l;
             dif_r = (int32_t) ad_r - base_r;
 
            if(CTRL_BASE_L < dif_l){
             dl_tmp += CTRL_CONT_LOW * dif_l * 0.1;
-            dr_tmp += -1 * CTRL_CONT_LOW *dif_l * 0.1;   //計算に0.1をかけた
+            dr_tmp += -1 * CTRL_CONT_LOW *dif_l * 0.1;   // 計算に0.1をかけた
+           }
+
+           if(dif_l < 0 && ad_r < 100){       // 左壁のみでそこから離れた場合の制御
+            dl_tmp += CTRL_CONT_MIDD * dif_l;
+            dr_tmp += -1 * CTRL_CONT_MIDD * dif_l;
            }
 
            if(CTRL_BASE_R < dif_r){
             dl_tmp += -1 * CTRL_CONT_LOW * dif_r * 0.1;
-            dr_tmp += CTRL_CONT_LOW * dif_r * 0.1;      //計算に0.1をかけた
+            dr_tmp += CTRL_CONT_LOW * dif_r * 0.1;      //  計算に0.1をかけた
           }
+
+           if(CTRL_BASE_R && ad_l < 100){
+             dl_tmp += -1 * CTRL_CONT_MIDD * dif_r;
+             dr_tmp += CTRL_CONT_MIDD * dif_l;
+           }
           }
 
 
