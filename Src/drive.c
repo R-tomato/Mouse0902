@@ -86,6 +86,7 @@ void rotate_R90(void){
   MF.FLAG.CTRL = 0;                   //制御無効
   drive_set_dir(ROTATE_R);            //右に旋回するようモータの回転方向を設定
   drive_wait();                       //機体が安定するまで待機
+  drive_wait();
   driveC(PULSE_ROT_R90);              //デフォルトインターバルで指定パルス分回転。回転後に停止する
   drive_wait();                       //機体が安定するまで待機
   drive_set_dir(FORWARD);             //前進するようにモータの回転方向を設定
@@ -102,6 +103,7 @@ void rotate_L90(void){
   MF.FLAG.CTRL = 0;                   //制御を無効にする
   drive_set_dir(ROTATE_L);            //左に旋回するようモータの回転方向を設定
   drive_wait();                       //機体が安定するまで待機
+  drive_wait();
   driveC(PULSE_ROT_L90);              //デフォルトインターバルで指定パルス分回転。回転後に停止する
   drive_wait();                       //機体が安定するまで待機
   drive_set_dir(FORWARD);             //前進するようにモータの回転方向を設定

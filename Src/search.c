@@ -158,20 +158,25 @@ void searchB(void){
       case 0x44:
         half_sectionD();            //半区画分減速しながら走行し停止
         count_turn ++;
-        if(ad_l > 600 && count_turn == 3){
+        if(ad_l > 400 && count_turn >= 4){
         count_turn = 0;
         rotate_R90();               //右回転
         turn_dir(DIR_TURN_R90);     //マイクロマウス内部位置情報でも右回転処理
         only_set_position();
 
-        }else if(count_turn == 3){
-          count_turn = 0;
-          rotate_R90();
-          turn_dir(DIR_TURN_R90);
         }else{
           rotate_R90();
           turn_dir(DIR_TURN_R90);
         }
+
+//        }else if(count_turn >= 4){
+//          count_turn ++;
+//          rotate_R90();
+//          turn_dir(DIR_TURN_R90);
+//        }else{
+//          rotate_R90();
+//          turn_dir(DIR_TURN_R90);
+//        }
 
         half_sectionA();
         break;
@@ -184,7 +189,7 @@ void searchB(void){
         turn_dir(DIR_TURN_180);     //マイクロマウス内部位置情報でも180度回転処理 からの尻当て
 
 
-        if(ad_l > 600 && ad_r > 600){     //もし両壁が存在するときだけ尻当てを行う（バグ対策
+        if(ad_l > 400 && ad_r > 400){     //もし両壁が存在するときだけ尻当てを行う（バグ対策
         drive_wait();
         reset_position();
         half_sectionA();
@@ -199,19 +204,23 @@ void searchB(void){
         half_sectionD();            //編集　半区画分減速しながら走行し停止
         count_turn ++;
       //スリップ対策のために条件分岐
-        if(ad_r > 600 && count_turn == 3){   //左回転する前に右壁を検知し，かつ左折カウントが3の時
+        if(ad_r > 400 && count_turn >= 4){   //左回転する前に右壁を検知し，かつ左折カウントが3の時
         count_turn = 0;                //左折カウントをリセット
         rotate_L90();               //左回転
         turn_dir(DIR_TURN_L90);     //マイクロマウス内部位置情報でも左回転処理
         only_set_position();        //尻当て
 
-        }else if(count_turn == 3){     //左折前に右壁がない場合，尻当てを行わない
-          count_turn = 0;              //左折カウントをリセット
-          rotate_L90();
-          turn_dir(DIR_TURN_L90);
         }else{
           rotate_L90();
           turn_dir(DIR_TURN_L90);
+
+//        }else if(count_turn >= 4){     //左折前に右壁がない場合，尻当てを行わない
+//          count_turn ++;              //左折カウントをリセット
+//          rotate_L90();
+//          turn_dir(DIR_TURN_L90);
+//        }else{
+//          rotate_L90();
+//          turn_dir(DIR_TURN_L90);
         }
           half_sectionA();
           break;

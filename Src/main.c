@@ -307,8 +307,13 @@ int main(void)
           printf("Control Check.\n");
           if(ad_l > CHANGE_CONT_R && ad_r  > CHANGE_CONT_L ){
             printf("Control [HIGH]\n");
+
+          }else if(ad_l < 100 && ad_r < 100){
+            printf("Control [HIGH]\n");
+
           }else{
-            printf("Contorl [LOW]\n");
+
+            printf("Control [LOW]");
           }
 
           HAL_Delay(2000);
